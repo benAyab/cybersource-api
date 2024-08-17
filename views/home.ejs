@@ -1,0 +1,172 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    <title>ADP-CARTE-BANCAIRE</title>
+</head>
+<body style="background-color: rgb(230, 222, 212);" class="container" onload="onBodyLoaded()">
+
+    <section class="hero is-primary">
+        <div class="hero-body">
+          <p style="color: beige;" class="title">ADP CARTE BANCAIRE</p>
+          <p style="color: beige;" class="subtitle">Pay from every where around the world</p>
+        </div>
+      </section>
+
+    <div class="block section">
+        <form id="cardForm" class="box" method="post" action="/api/v1/adp-cb/initauthorization">
+            
+            <div class="field is-horizontal">
+              <div class="field-label"> User personnal informations</div>
+                <div class="field-body">
+
+                  <div class="field">
+                      <label class="label">First name</label>
+                      <div class="control">
+                        <input name="firstName" class="input" type="text" placeholder="Enter your name" required>
+                      </div>
+                  </div>
+
+                  <div class="field">
+                      <label class="label">Last name</label>
+                      <div class="control has-icons-left has-icons-right">
+                          <input name="lastName" class="input is-success" type="text" placeholder="Enter your last name" required>
+                          <span class="icon is-small is-left">
+                          <i class="fas fa-user"></i>
+                          </span>
+                          <span class="icon is-small is-right">
+                          <i class="fas fa-check"> </i>
+                          </span>
+                      </div>
+                      <!-- <p class="help is-success">This username is available</p> -->
+                  </div>
+        
+                  <div class="field">
+                      <label class="label">Address 1</label>
+                      <div class="control has-icons-left has-icons-right">
+                          <input name="address1" class="input is-success" type="text" placeholder="your address line 1" required>
+                          <span class="icon is-small is-left">
+                          <i class="fas fa-user"></i>
+                          </span>
+                          <span class="icon is-small is-right">
+                          <i class="fas fa-check"> </i>
+                          </span>
+                      </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label"> User contact</div>
+                  <div class="field-body">
+                    <div class="field">
+                        <label class="label">Country</label>
+                        <p class="control">
+                            <span class="select">
+                              <select id="contrySelect" name="country">
+                              </select>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Phone</label>
+                        <div class="control">
+                          <input name="phoneNumber" class="input is-success" type="tel" placeholder="" value="698530651" pattern="[0-9]{9}" required>
+                        </div>
+                        <!-- <p pattern="[0-9]{16}-[0-9]{3}-[0-9]{4}" class="help is-danger">This email is invalid</p> -->
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                          <input name="email" class="input is-success" type="email" placeholder="Email input">
+                        </div>
+                        <!-- <p class="help is-danger">This email is invalid</p> -->
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="field is-horizontal">
+                    <div class="field-label"> Card informations</div>
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">Card Number</label>
+                            <div class="control">
+                              <input
+                                name="number" class="input is-success" type="text" placeholder="" 
+                                minlength="16" maxlength="16"
+                                pattern="[0-9]{16}"
+                                required>
+                            </div>
+                            <!-- <p class="help is-danger">This email is invalid</p> -->
+                        </div>
+                        <div class="field">
+                            <label class="label">CVV</label>
+                            <div class="control">
+                              <input name="cvv" class="input is-success" type="text" placeholder="123" minlength="3" maxlength="3">
+                            </div>
+                            <!-- <p class="help is-danger">This email is invalid</p> -->
+                        </div>
+                        <div class="field">
+                            <label class="label">Expiration date</label>
+                            <div class="control">
+                              <input name="expireDate" class="input is-success" type="date" required>
+                            </div>
+                            <!-- <p class="help is-danger">This email is invalid</p> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label"> </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">Currency</label>
+                            <p class="control">
+                                <span class="select">
+                                  <select id="contrySelect" name="currency">
+                                    <option value="XAF">XAF</option>
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                  </select>
+                                </span>
+                            </p>
+                            <!-- <p class="help is-danger">This email is invalid</p> -->
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Total amount</label>
+                            <div style="width: 100px;" class="control">
+                              <input name="totalAmount" style="width: 30vw;" class="input is-success" min="0" type="number" placeholder="" required>
+                            </div>
+                            <!-- <p class="help is-danger">This email is invalid</p> -->
+                        </div>
+                        
+                    </div>
+                </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Submit</button>
+                </div>
+              </div>
+        </form>
+    </div>
+
+    <iframe id="cardinal_collection_iframe" name="collectionIframe" height="10" width="10" style="display: none;"></iframe>
+    <form id="cardinal_collection_form" method="POST" target="collectionIframe" action=https://centinelapistag.cardinalcommerce.com/V2/Cruise/Collect>
+      <input id="cardinal_collection_form_input" type="hidden" name="JWT" value="">
+    </form>
+
+    <iframe id="step_up_iframe" name="step-up-iframe" height="400" width="400"></iframe>
+    <form id="step-up-form" target="step-up-iframe" method="post" action=""> 
+      <input id="stepUpInput" type="hidden" name="JWT" value=""/> 
+      <input type="hidden" name="MD" value="ADP-CB-ADWA"/>
+    </form>
+
+    
+    <script src="/js/formProcess.js"></script>
+    <script src="/js/processAuth.js"></script>
+</body>
+</html>
